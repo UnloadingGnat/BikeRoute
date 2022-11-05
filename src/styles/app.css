@@ -1,3 +1,17 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.header-box {
+    height: 50px;
+    padding: 2rem 3rem;
+    background-color: gainsboro;
+    border-radius: 20px;
+}
+
+.form {
+    margin-left: 50px;
 }

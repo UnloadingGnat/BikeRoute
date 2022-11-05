@@ -1,86 +1,56 @@
-import React from "react";
+import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import { useState } from "react";
-import styles from "./app.modules.css";
 
-import "./styles/app.css";
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const google = window.google;
 
-const containerStyle = {};
-const mapStyle = {
-  width: "100%",
-  height: "100vh",
-  marginLeft: "auto",
-};
+class GoogleMaps extends Component {
+  constructor(props) {
+    super(props);
 
-export default function SimpleMap() {
-  const [userLocation, setuserLocation] = useState({
-    lat: 43.99835602,
-    lng: -77.01502627,
-  });
-  const defaultProps = {
-    center: userLocation,
-    zoom: 13,
-  };
-
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(
-          `Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`
-        );
-        setuserLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      },
-      (err) => alert(`Error (${err.code}): ${err.message}`)
-    );
-  } else {
-    alert("Geolocation is not supported by your browser.");
+    this.state = {
+      currentLocation: { lat: 40.756795, lng: -73.954298 }
+    };
   }
 
-  return (
-    <div>
-      <div style={{ display: "flex" }}>
-        <div style={{ padding: "20px" }}>
-          <h1 style={{ fontSize: "32px" }}>RouteMixer</h1>
-        </div>
-        <div
-          className="container"
-          style={{
-            padding: "10%",
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div className="form">
-            <p>aSasaSasaSasaSa</p>
-          </div>
+  render() {
+    const apiIsLoaded = (map, maps) => {
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+      const origin = { lat: 43.756795, lng: -73.954298 };
+      const destination = { lat: 41.756795, lng: -78.954298 };
+
+      directionsService.route(
+        {
+          origin: origin,
+          destination: destination,
+          travelMode: google.maps.TravelMode.BICYCLING
+        },
+        (result, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsRenderer.setDirections(result);
+          } else {
+            console.error(`error fetching directions ${result}`);
+          }
+        }
+      );
+    };
+    return (
+      <div>
+        <div style={{ height: "400px", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: "AIzaSyANEFi4Q4JlBGKxU3Il9MpEph9yM3BZf9c",
+              key: "AIzaSyAT-z68sTei7w4INPO4M9GtbXQh8MjFRqo"
             }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-          >
-            <AnyReactComponent
-              lat={59.955413}
-              lng={30.337844}
-              text="My Marker"
-            />
-          </GoogleMapReact>
+            defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+            defaultZoom={10}
+            center={this.state.currentLocation}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
+          />
         </div>
-        <div
-          style={{
-            height: "50vh",
-            width: "50%",
-            marginLeft: "auto",
-            marginRight: "20px",
-            marginTop: "20px",
-          }}
-        ></div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+export default GoogleMaps;
