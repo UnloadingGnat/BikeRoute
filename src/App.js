@@ -1,18 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import "./index.css"
-import { BiShuffle, BiWalk } from 'react-icons/bi';
+import { BiShuffle } from 'react-icons/bi';
 
+function App() {
+  const google = window.google;
+  const [currentLocation, setCurrentLocation] = useState({
+    lat: 40.7567,
+    lng: -73.9549,
+  });
 
-
-const google = window.google;
-
-class GoogleMaps extends Component {
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(
+            `Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`
+          );
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (err) => alert(`Error (${err.code}): ${err.message}`)
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  }, []);
 
     this.state = {
-      currentLocation: { lat: 43.6629, lng: -79.3957 }
+      currentLocation: { lat: 40.756795, lng: -73.954298 }
     };
   }
 
@@ -21,14 +39,14 @@ class GoogleMaps extends Component {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
-      const origin = { lat: 43.6629, lng: -79.3957 };
-      const destination = { lat: 43.756795, lng: -79.954298 };
+      const origin = { lat: 43.756795, lng: -73.954298 };
+      const destination = { lat: 41.756795, lng: -78.954298 };
 
       directionsService.route(
         {
           origin: origin,
           destination: destination,
-          travelMode: google.maps.TravelMode.WALKING
+          travelMode: google.maps.TravelMode.BICYCLING
         },
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
@@ -64,7 +82,7 @@ class GoogleMaps extends Component {
             </div>
             <div class="route">
               <div class="route-title">Route Type</div>
-              <button class="walk"><BiWalk size={30} /></button>
+              <button class="walk"></button>
               <div></div>
             </div>
 
@@ -83,7 +101,8 @@ class GoogleMaps extends Component {
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-export default GoogleMaps;
+
+export default App;
