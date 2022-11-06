@@ -8,6 +8,7 @@ import generateRandomPoint from "./utils/utility.js";
 function App() {
   const google = window.google;
   const distance = useRef();
+  const [routeType, setRouteType] = useState("walk");
   const [filler, setFiller] = useState(false);
   const [desination, setDestination] = useState({
     lat: 40.7567,
@@ -35,6 +36,8 @@ function App() {
   }
 
   function drawRoute() {
+
+    console.log(routeType);
     const convertedDistance = distance.current.value * 1000;
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -77,6 +80,7 @@ function App() {
       lng: locations.destination.lng,
     };
     // getDistance(locations.origin, locations.desination);
+    const travelMode = routeType == "walk" ? google.maps.TravelMode.WALKING : google.maps.TravelMode.BICYCLING 
     directionsService.route(
       {
         origin: origin,
@@ -118,10 +122,22 @@ function App() {
             </div>
             <div class="route">
               <div class="route-title">Route Type</div>
-              <button class="walk">
+              <button
+                onClick={() => setRouteType("walk")}
+                type="Button"
+                className={
+                  routeType == "walk" ? "route-button route-button-active" : "route-button"
+                }
+              >
                 <BiWalk size={30} />
               </button>
-              <button class="bike">
+              <button
+                onClick={() => setRouteType("bike")}
+                type="Button"
+                className={
+                  routeType == "bike" ? "route-button route-button-active" : "route-button"
+                }
+              >
                 <BiCycling size={30} />
               </button>
             </div>
