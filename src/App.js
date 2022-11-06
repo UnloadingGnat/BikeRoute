@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./index.css"
-import { BiShuffle } from 'react-icons/bi';
+import { BiShuffle, BiWalk } from 'react-icons/bi';
 
 
 
@@ -64,7 +64,7 @@ class GoogleMaps extends Component {
             </div>
             <div class="route">
               <div class="route-title">Route Type</div>
-              <button class="walk"></button>
+              <button class="walk"><BiWalk size={30} /></button>
               <div></div>
             </div>
 
