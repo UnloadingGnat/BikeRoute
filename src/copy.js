@@ -11,37 +11,35 @@ function App() {
   const [routeType, setRouteType] = useState("walk");
   const [filler, setFiller] = useState(false);
   const [desination, setDestination] = useState({
-    lat: 43.6470,
-    lng: -79.3903,
+    lat: 40.7567,
+    lng: -73.9549,
   });
   const [currentLocation, setCurrentLocation] = useState({
-    lat: 43.6570,
-    lng: -79.3903,
+    lat: 40.7567,
+    lng: -73.9549,
   });
 
   const [locations, setLocations] = useState({
     origin: {
-      lat: 43.6570,
-      lng: -79.3903,
+      lat: 40.7567,
+      lng: -73.9549,
     },
     destination: {
-      lat: 43.6870,
-      lng: -79.3703,
+      lat: 40.7567,
+      lng: -73.9549,
     },
   });
 
   function handleSubmit(event) {
     event.preventDefault();
     drawRoute(distance);
-  };
-
+  }
 
   function drawRoute() {
 
     console.log(routeType);
     const convertedDistance = distance.current.value * 1000;
     if ("geolocation" in navigator) {
-      console.log(distance)
       navigator.geolocation.getCurrentPosition(
         (position) => {
           console.log(
