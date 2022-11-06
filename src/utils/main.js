@@ -1,6 +1,5 @@
 const axios = require("axios").default;
 
-
 export default async function getDistance() {
   const response = await axios.get(
     "https://maps.googleapis.com/maps/api/distancematrix/json?origins=43.6690119,-79.391594&destinations=41.756795,-78.954298&key=AIzaSyAT-z68sTei7w4INPO4M9GtbXQh8MjFRqo",
