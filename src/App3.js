@@ -87,7 +87,7 @@ function App() {
       {
         origin: origin,
         destination: destination,
-        travelMode: google.maps.TravelMode.BICYCLING,
+        travelMode: travelMode,
       },
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
