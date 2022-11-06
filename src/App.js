@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./index.css"
+import { BiShuffle } from 'react-icons/bi';
+
+
 
 const google = window.google;
 
@@ -40,7 +43,8 @@ class GoogleMaps extends Component {
       <div>
         <div class="header-bar"></div>
         <div class="title">
-          Route Mixer
+            <BiShuffle />
+            Route Mixer 
         </div>
         <div class="main">
           <div class="left-section">
