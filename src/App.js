@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+import "./index.css"
 
 const google = window.google;
 
@@ -8,7 +9,7 @@ class GoogleMaps extends Component {
     super(props);
 
     this.state = {
-      currentLocation: { lat: 40.756795, lng: -73.954298 }
+      currentLocation: { lat: 43.6629, lng: -79.3957 }
     };
   }
 
@@ -17,14 +18,14 @@ class GoogleMaps extends Component {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
-      const origin = { lat: 43.756795, lng: -73.954298 };
-      const destination = { lat: 41.756795, lng: -78.954298 };
+      const origin = { lat: 43.6629, lng: -79.3957 };
+      const destination = { lat: 43.756795, lng: -79.954298 };
 
       directionsService.route(
         {
           origin: origin,
           destination: destination,
-          travelMode: google.maps.TravelMode.BICYCLING
+          travelMode: google.maps.TravelMode.WALKING
         },
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
@@ -37,17 +38,45 @@ class GoogleMaps extends Component {
     };
     return (
       <div>
-        <div style={{ height: "400px", width: "100%" }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyAT-z68sTei7w4INPO4M9GtbXQh8MjFRqo"
-            }}
-            defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
-            defaultZoom={10}
-            center={this.state.currentLocation}
-            yesIWantToUseGoogleMapApiInternals
-            onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
-          />
+        <div class="header-bar"></div>
+        <div class="title">
+          Route Mixer
+        </div>
+        <div class="main">
+          <div class="left-section">
+            <div class="content">
+              <div class="content-title">
+                Mix up your route!
+              </div>
+              <div class="content-body">
+                Routes for walking or cycling in one click! Try it now.
+              </div>
+            </div>
+            <div class="dist">
+              <div class="form-main">
+                Distance
+              </div>
+              <input class="dist-input"></input>
+            </div>
+            <div class="route">
+              <div class="route-title">Route Type</div>
+              <button class="walk"></button>
+              <div></div>
+            </div>
+
+          </div>
+          <div class="map" style={{ height: "500px", width: "40%" }}>
+            <GoogleMapReact
+              bootstrapURLKeys={{
+                key: "AIzaSyAT-z68sTei7w4INPO4M9GtbXQh8MjFRqo"
+              }}
+              defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+              defaultZoom={10}
+              center={this.state.currentLocation}
+              yesIWantToUseGoogleMapApiInternals
+              onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
+            />
+          </div>
         </div>
       </div>
     );

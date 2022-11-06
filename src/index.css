@@ -1,3 +1,118 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    background-color: #fff;
+}
+
+.form-main {
+    display: flex;
+    margin-left: 20%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.header-box {
+    height: 50px;
+    padding: 2rem 3rem;
+    background-color: gainsboro;
+    border-radius: 20px;
+}
+
+.header-bar {
+    padding: 15px;
+    background-color: #3474eb;
+}
+
+.dist {
+    display: flex;
+    gap: 15px;
+}
+
+.route {
+    display: flex;
+    margin-left: 20%;
+}
+
+.walk:active {
+    margin-top: -3%;
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 4px;
+    border-style: solid;
+    border-color: #01161E;
+    width: 80px;
+    height: 40px;
+}
+
+.walk {
+    margin-top: -3%;
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 4px;
+    border-style: solid;
+    background-color: #fff;
+    border-color: #b1b9bc;
+    width: 80px;
+    height: 40px;
+}
+
+.route-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.title {
+    font-size: 30px;
+    padding: 20px;
+    margin-left: 6%;
+    margin-bottom: 3%;
+    font-weight: 600;
+    color: #333333;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 2%;
+    margin-left: 20%;
+    width: 90%;
+    height: 100px;
+    padding: 30px;
+    background-color: #eeeeee;
+    border-radius: 10px;
+}
+
+.content-body {
+    display: flex;
+    margin-top: 5%;
+    font-size: 20px;
+}
+
+.content-title {
+    display: flex;
+    color: #333333;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.main {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.map {
+    display: flex;
+    margin-left: auto;
+    margin-right: 10%;
+    margin-top: 2%;
+}
