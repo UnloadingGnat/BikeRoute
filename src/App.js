@@ -1,36 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./index.css"
-import { BiShuffle } from 'react-icons/bi';
+import { BiShuffle, BiWalk, BiCycling } from 'react-icons/bi';
 
-function App() {
-  const google = window.google;
-  const [currentLocation, setCurrentLocation] = useState({
-    lat: 40.7567,
-    lng: -73.9549,
-  });
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(
-            `Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`
-          );
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (err) => alert(`Error (${err.code}): ${err.message}`)
-      );
-    } else {
-      alert("Geolocation is not supported by your browser.");
-    }
-  }, []);
+
+const google = window.google;
+
+class GoogleMaps extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      currentLocation: { lat: 40.756795, lng: -73.954298 }
+      currentLocation: { lat: 42.6629, lng: -79.3957 }
     };
   }
 
@@ -39,14 +21,14 @@ function App() {
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
-      const origin = { lat: 43.756795, lng: -73.954298 };
-      const destination = { lat: 41.756795, lng: -78.954298 };
+      const origin = { lat: 43.6629, lng: -79.3957 };
+      const destination = { lat: 43.753795, lng: -79.954298 };
 
       directionsService.route(
         {
           origin: origin,
           destination: destination,
-          travelMode: google.maps.TravelMode.BICYCLING
+          travelMode: google.maps.TravelMode.WALKING
         },
         (result, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
@@ -61,8 +43,8 @@ function App() {
       <div>
         <div class="header-bar"></div>
         <div class="title">
-            <BiShuffle />
-            Route Mixer 
+          <BiShuffle />
+          Route Mixer
         </div>
         <div class="main">
           <div class="left-section">
@@ -82,8 +64,11 @@ function App() {
             </div>
             <div class="route">
               <div class="route-title">Route Type</div>
-              <button class="walk"></button>
-              <div></div>
+              <button class="walk"><BiWalk size={30} /></button>
+              <button class="bike"><BiCycling size={30} /></button>
+            </div>
+            <div class="end">
+              <button class="mix">Mix!</button>
             </div>
 
           </div>
@@ -101,8 +86,7 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default App;
+export default GoogleMaps;

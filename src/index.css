@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0px;
@@ -18,6 +19,42 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10%;
+}
+
+.mix {
+    display: inline-block;
+    outline: none;
+    width: 100px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 14px 24px;
+    border: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    color: #fff;
+}
+.mix:active {
+    display: inline-block;
+    outline: none;
+    width: 100px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 14px 24px;
+    border: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: linear-gradient(to right, rgb(181, 21, 59) 0%, rgb(204, 25, 84) 50%, rgb(215, 4, 102) 100%);
+    color: #fff;
+}
+
+.end {
+    display: flex;
+    margin-left: 20%;
 }
 
 .header-box {
@@ -61,6 +98,31 @@ body {
     border-style: solid;
     background-color: #fff;
     border-color: #b1b9bc;
+    width: 80px;
+    height: 40px;
+}
+
+.bike {
+    margin-top: -3%;
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 4px;
+    border-style: solid;
+    background-color: #fff;
+    border-color: #b1b9bc;
+    width: 80px;
+    height: 40px;
+
+}
+
+
+.bike:active {
+    margin-top: -3%;
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 4px;
+    border-style: solid;
+    border-color: #01161E;
     width: 80px;
     height: 40px;
 }
