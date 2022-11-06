@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SimpleMap from "./App.js";
+import App from "./App.js";
 import "./index.css";
 
 function Index() {
-  return <SimpleMap />;
-  
+  return <App />;
 }
 
 ReactDOM.render(<Index />, document.querySelector("#root"));
