@@ -30,11 +30,12 @@ function App() {
   });
 
   function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     drawRoute(distance);
   }
 
   function drawRoute() {
+    const convertedDistance = distance.current.value * 1000;
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -46,7 +47,7 @@ function App() {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             },
-              distance
+            convertedDistance
           );
           setLocations({
             origin: {
@@ -109,7 +110,7 @@ function App() {
               Routes for walking or cycling in one click! Try it now.
             </div>
           </div>
-          <form>
+          <form onSubmit={(event) => handleSubmit(event)}>
             <div class="dist">
               <div class="form-main">Distance</div>
               <input required class="dist" ref={distance} type="text"></input>
@@ -125,7 +126,7 @@ function App() {
               </button>
             </div>
             <div class="end">
-              <button onClick={(event) => handleSubmit(event)} class="mix">
+              <button type="submit" class="mix">
                 Mix!
               </button>
             </div>
