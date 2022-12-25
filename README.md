@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+https://devpost.com/software/routemixer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Inspiration
 
-## Available Scripts
+We are all active students who often walk and cycle as a form of leisure. However, we realized that this form of exercise becomes extremely monotonous to keep on walking/cycling the same routes daily/weekly.
 
-In the project directory, you can run:
+RouteMixer aims to solve this issue by randomly generating a route for walking or biking to help you explore a new path, or traverse a new trail!
+What it does
 
-### `npm start`
+RouteMixer detects the user's location, and asks the user for the distance they want to bike/walk. Using this information, it generates a random route of that length from the user's location. This route is then presented on map generated via Google Maps.
+How we built it
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+RouteMixer is a single page app built using React JS, HTML, CSS, JS. The user's current location is found using Javascript. Additionally, the Google Maps API in conjunction with React JS is used to display the map. This was done using the open source Google-Map-React library.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To use Google Maps, we went on the Google Cloud Console to generate a Google Maps API key and enable the relevant services (Maps Javascript API, Directions API, Distance Matrix API and the Geocoding API).
 
-### `npm test`
+We built an algorithm in JS to randomly generate points on the circumference of a circle with the radius given by distance from the initial location. A random point on the circumference is then selected, and we use React/Google Maps to render a route from the initial location to that point.
+Challenges we ran into
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+None of us had any experience with Google Cloud Services or the Google Maps API. We spent quite a bit of time generating the API key, enabling relevant services and then troubleshooting to understand why certain aspects didn't work at first (e.g. bad calls to the API, certain services not enabled, etc.)
 
-### `npm run build`
+Another challenge that was more difficult than expected was generating the random locations. This is because we get the user's current locations in latitude and longitude. Finding points (in latitude and longitude) that were the required distance away required quite a bit of research and mathematics.
+Accomplishments that we're proud of
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Given the short time frame and our inexperience with many of the crucial libraries in this project (google-maps-react, and the API), we are proud to have completed the working prototype.
+What we learned
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We learned quite a bit about Google Cloud Services, the Google Maps API and about APIs in general due to our debugging/research. 
